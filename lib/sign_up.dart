@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'login_page.dart';
 
 class SignUpPage extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() => _SignUpPage();
 }
@@ -14,7 +14,6 @@ class _SignUpPage extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new Scaffold(
       body: Container(
           padding: EdgeInsets.all(10.0),
@@ -33,7 +32,11 @@ class _SignUpPage extends State<SignUpPage> {
                 ),
               RaisedButton(onPressed: () {},
                   child: Text('Create Account'),textColor: const Color(0xFFFFFFFF),
-                  color: const Color.fromRGBO(175,151,105,1.0),)
+                  color: const Color.fromRGBO(175,151,105,1.0)),
+              RaisedButton(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));},
+                child: Text('Have an account? Login.'),textColor: const Color(0xFFFFFFFF),
+                color: const Color.fromRGBO(175,151,105,1.0))
               ],
             ))
       )

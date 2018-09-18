@@ -1,38 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'sign_up.dart';
+import 'main.dart' show HomePage;
+
+//import 'package:firebase_auth/firebase_auth.dart';
+
+
 
 class LoginPage extends StatefulWidget {
   @override
-  //static String tag = "login-page";
-  State<StatefulWidget> createState() => return _LoginPage();
+  State<StatefulWidget> createState() => new _LoginPage();
 }
 
 class _LoginPage extends State<LoginPage> {
   String _email;
   String _password;
 
+  final formKey = new GlobalKey<FormState>();
+
+  void validateAndSave(){
+    final form = formKey.currentState;
+
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+        home: Scaffold(
       body: Container(
         padding: EdgeInsets.all(10.0),
         child: new Form(
-          child: Column(
+          key: formKey,
+          child: new Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               new TextFormField(
-                decoration: new InputDecoration(labelText: 'Email'),
+                decoration: new InputDecoration(labelText: 'Email')
               ),
               new TextFormField(
                 decoration: new InputDecoration(labelText: 'Password'),
+                obscureText: true,
               ),
-              RaisedButton(onPressed: () {},
+              new RaisedButton(onPressed: () {},
                 child: Text('Log In'),textColor: const Color(0xFFFFFFFF),
-                color: const Color.fromRGBO(175,151,105,1.0),)
+                color: const Color.fromRGBO(175,151,105,1.0)),
+              new RaisedButton(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));},
+              child: Text("Don't have an account? Sign Up"),textColor: const Color(0xFFFFFFFF),
+                  color: const Color.fromRGBO(175,151,105,1.0)
+              ),
+              new FlatButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));},
+                  child: Text('Return Home'))
             ],
           )
         ),
       )
+    )
     );
   }
 }
