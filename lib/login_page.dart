@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'sign_up.dart';
 import 'main.dart' show HomePage;
 
@@ -17,9 +18,20 @@ class _LoginPage extends State<LoginPage> {
 
   final formKey = new GlobalKey<FormState>();
 
-  void validateAndSave(){
+  bool validateAndSave(){
     final form = formKey.currentState;
+    if (form.validate()){
+      form.save();
+      return true;
+    }
+    return false;
+  }
 
+  //async since you need to wait for response from firebase
+  void validateAndSubmit() async {
+    if (validateAndSave()){
+      FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
+    }
   }
 
   @override
